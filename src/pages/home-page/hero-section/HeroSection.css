@@ -1,0 +1,61 @@
+.hero-section-main {
+  height: 145vh;
+  padding: 0 1rem;
+}
+
+/*  */
+.hero-section-bg-text {
+  display: none;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  font-size: clamp(2em, 12vw, 18em);
+  font-weight: 700;
+  opacity: 0.1;
+}
+
+.hero-section-content-left {
+  height: 95vh;
+  padding: 12vh 0;
+}
+
+.hero-section-heading {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #e63946;
+  text-shadow: -2px 2px 4px rgba(230, 57, 70, 0.49);
+  margin-bottom: 6vh;
+}
+
+/* clamp(,,1.5em); */
+.hero-section-para {
+  letter-spacing: 1.5px;
+  line-height: 1.5;
+  font-size: 1.2rem;
+  margin: 2rem 0;
+}
+.hero-section-cta-btn {
+  width: 10rem;
+  height: 3.8rem;
+  margin-top: 4vh;
+  background-color: #e63946;
+  box-shadow: -3px 3px 1px rgba(230, 57, 70, 0.49);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+  outline: none;
+  border: none;
+  border-radius: 0.8em;
+  cursor: pointer;
+}
+
+.hero-section-content-right {
+  height: 50vh;
+  z-index: 2;
+}
+
+.hero-section-world-img {
+  width: 100%;
+  object-fit: contain;
+}

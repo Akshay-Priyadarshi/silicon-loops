@@ -1,0 +1,22 @@
+.contact-section-main {
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.contact-section-heading {
+  font-weight: 900;
+  font-size: 3.5rem;
+}
+
+.contact-section-icons-group {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.contact-section-icon {
+  width: 12%;
+}

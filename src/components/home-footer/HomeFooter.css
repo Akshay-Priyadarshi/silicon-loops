@@ -1,0 +1,40 @@
+.home-footer-section-main {
+  padding: 1rem;
+  background-color: black;
+  color: #a8dadc;
+}
+a {
+  color: #a8dadc;
+}
+.home-footer-section-logo {
+  width: 40%;
+}
+.home-footer-section-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 2rem 0;
+}
+.home-footer-section-main-links-container {
+  margin-right: 1rem;
+}
+.home-footer-section-main-link {
+  font-weight: 900;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+.home-footer-section-details {
+  margin-left: 1rem;
+}
+
+.home-footer-section-part {
+  margin-bottom: 1rem;
+}
+.home-footer-section-part-title {
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+.home-footer-section-part-para {
+  line-height: 1.2rem;
+}

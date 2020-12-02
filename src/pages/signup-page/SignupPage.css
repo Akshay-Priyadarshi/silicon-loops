@@ -1,0 +1,121 @@
+.signup-page-main {
+  height: 90vh;
+  margin: 0 1rem;
+  text-align: center;
+  background-color: black;
+  color: white;
+  fill: white;
+  opacity: 0;
+}
+.signup-page-heading {
+  font-weight: 500;
+  margin: 5vh 0;
+  letter-spacing: 0.5rem;
+  font-size: 2.5rem;
+}
+.signup-page-form {
+  width: 100%;
+}
+.signup-page-email {
+  margin-bottom: 2.5rem;
+  width: 100%;
+  height: 2vh;
+  padding: 1rem 0;
+  border-bottom: 1px solid white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+.signup-page-email-icon {
+  flex: 1;
+  text-align: center;
+}
+.signup-page-email-icon-img {
+  width: 1.5rem;
+}
+.signup-page-email-field {
+  flex: 9;
+  color: white;
+  font-size: 1.2rem;
+  padding: 0 0.5rem;
+  background: transparent;
+  outline: none;
+  border: none;
+  border-left: 1px solid white;
+}
+.signup-page-password {
+  margin-bottom: 2.5rem;
+  width: 100%;
+  height: 2vh;
+  padding: 1rem 0;
+  border-bottom: 1px solid white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+.signup-page-password-icon {
+  flex: 1;
+  text-align: center;
+}
+.signup-page-password-icon-img {
+  width: 1.5rem;
+}
+.signup-page-password-field {
+  flex: 9;
+  color: white;
+  font-size: 1.2rem;
+  padding: 0 0.5rem;
+  background: transparent;
+  outline: none;
+  border: none;
+  border-left: 1px solid white;
+}
+
+.signup-page-btn {
+  margin-bottom: 2.5rem;
+  padding: 0.6rem 2rem;
+  font-size: 1.5rem;
+  background-color: #e63946;
+  border: none;
+  color: white;
+}
+.signup-page-btn > span {
+  margin-left: 0.4rem;
+}
+
+.signup-page-arrow-icon {
+  width: 1rem;
+}
+
+.signup-page-form > p {
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.signup-page-social-icons-container {
+  background-color: white;
+  width: 70%;
+  height: 3.5rem;
+  padding: 0 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2.5rem;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.signup-page-social-icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.signup-page-bold-text {
+  font-weight: 500;
+}
+.signup-page-bold-text > span {
+  margin-left: 0.4rem;
+}

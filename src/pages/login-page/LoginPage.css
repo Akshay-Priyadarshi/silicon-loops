@@ -1,0 +1,121 @@
+.login-page-main {
+  height: 90vh;
+  margin: 0 1rem;
+  text-align: center;
+  background-color: black;
+  color: white;
+  fill: white;
+  opacity: 0;
+}
+.login-page-heading {
+  font-weight: 500;
+  margin: 6vh 0;
+  letter-spacing: 0.5rem;
+  font-size: 2.5rem;
+}
+.login-page-form {
+  width: 100%;
+}
+.login-page-email {
+  margin-bottom: 3rem;
+  width: 100%;
+  height: 2vh;
+  padding: 1rem 0;
+  border-bottom: 1px solid white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+.login-page-email-icon {
+  flex: 1;
+  text-align: center;
+}
+.login-page-email-icon-img {
+  width: 1.5rem;
+}
+.login-page-email-field {
+  flex: 9;
+  color: white;
+  font-size: 1.2rem;
+  padding: 0 0.5rem;
+  background: transparent;
+  outline: none;
+  border: none;
+  border-left: 1px solid white;
+}
+.login-page-password {
+  margin-bottom: 3rem;
+  width: 100%;
+  height: 2vh;
+  padding: 1rem 0;
+  border-bottom: 1px solid white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+.login-page-password-icon {
+  flex: 1;
+  text-align: center;
+}
+.login-page-password-icon-img {
+  width: 1.5rem;
+}
+.login-page-password-field {
+  flex: 9;
+  color: white;
+  font-size: 1.2rem;
+  padding: 0 0.5rem;
+  background: transparent;
+  outline: none;
+  border: none;
+  border-left: 1px solid white;
+}
+
+.login-page-btn {
+  margin-bottom: 3rem;
+  padding: 0.6rem 2rem;
+  font-size: 1.5rem;
+  background-color: #e63946;
+  border: none;
+  color: white;
+}
+.login-page-btn > span {
+  margin-left: 0.4rem;
+}
+
+.login-page-arrow-icon {
+  width: 1rem;
+}
+
+.login-page-form > p {
+  margin-bottom: 2.5rem;
+  font-size: 1.1rem;
+}
+
+.login-page-social-icons-container {
+  background-color: white;
+  width: 70%;
+  height: 3.5rem;
+  padding: 0 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 3rem;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.login-page-social-icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.login-page-bold-text {
+  font-weight: 500;
+}
+.login-page-bold-text > span {
+  margin-left: 0.4rem;
+}
