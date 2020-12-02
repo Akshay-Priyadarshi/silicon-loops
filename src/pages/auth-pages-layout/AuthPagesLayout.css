@@ -1,0 +1,25 @@
+.auth-pages-layout-main {
+  width: 100vw;
+  color: white;
+}
+
+.auth-pages-layout-navbar-container {
+  position: sticky;
+  background-color: black;
+  width: 100%;
+  height: 7vh;
+  border-top: 0.2px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 1px 1px 4px grey;
+  z-index: 100;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  bottom: 0 !important;
+}
+
+.auth-pages-layout-navbar-icon {
+  width: 2rem;
+  height: 2rem;
+  fill: white;
+}

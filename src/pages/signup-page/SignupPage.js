@@ -9,7 +9,7 @@ import facebookIcon from "../../assets/facebook-colored.svg";
 import { Link } from "react-router-dom";
 import gsap from "gsap";
 
-function SignupPage() {
+function SignupPage(props) {
   useEffect(() => {
     gsap.to(".signup-page-main", {
       opacity: 1,
@@ -31,6 +31,10 @@ function SignupPage() {
 
     beepAnimation.play();
   }, []);
+
+  const onSignup = () => {
+    props.history.push({ pathname: "/auth" });
+  };
 
   return (
     <div id="signup-page" className="signup-page-main">
@@ -75,7 +79,7 @@ function SignupPage() {
             placeholder="confirm password"
           />
         </div>
-        <button className="signup-page-btn">
+        <button className="signup-page-btn" onClick={onSignup}>
           signup
           <span>
             <ArrowIcon
@@ -105,7 +109,7 @@ function SignupPage() {
           />
         </div>
         <Link to="/login">
-          <p class="signup-page-bold-text">
+          <p className="signup-page-bold-text">
             already have an account. login here
             <span>
               <ArrowIcon className="signup-page-arrow-icon" />

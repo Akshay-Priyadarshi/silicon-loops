@@ -9,7 +9,7 @@ import facebookIcon from "../../assets/facebook-colored.svg";
 import { Link } from "react-router-dom";
 import gsap from "gsap";
 
-function LoginPage() {
+function LoginPage(props) {
   useEffect(() => {
     gsap.to(".login-page-main", {
       opacity: 1,
@@ -30,6 +30,11 @@ function LoginPage() {
       });
     beepAnimation.play();
   }, []);
+
+  const onLogin = () => {
+    console.log(props);
+    props.history.push({ pathname: "/auth" });
+  };
 
   return (
     <div id="login-page" className="login-page-main">
@@ -61,7 +66,7 @@ function LoginPage() {
             placeholder="password"
           />
         </div>
-        <button className="login-page-btn">
+        <button className="login-page-btn" onClick={onLogin}>
           login
           <span>
             <ArrowIcon
@@ -91,7 +96,7 @@ function LoginPage() {
           />
         </div>
         <Link to="/signup">
-          <p class="login-page-bold-text">
+          <p className="login-page-bold-text">
             new here? join the community
             <span>
               <ArrowIcon className="login-page-arrow-icon" />

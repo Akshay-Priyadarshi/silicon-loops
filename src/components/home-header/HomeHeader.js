@@ -17,7 +17,7 @@ function HomeHeader() {
   };
 
   return (
-    <div className="home-header-main">
+    <div id="home-header" className="home-header-main">
       <img
         className="home-header-logo"
         src={logoWithText}

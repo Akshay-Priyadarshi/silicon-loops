@@ -59,10 +59,32 @@ function HomeFooter() {
             </p>
           </Link>
           <Link to="/login">
-            <p className="home-footer-section-main-link">login</p>
+            <p
+              onClick={() => {
+                gsap.to(window, {
+                  duration: 0.6,
+                  scrollTo: { y: "#login-page", offsetY: 100 },
+                  ease: "power3.inOut",
+                });
+              }}
+              className="home-footer-section-main-link"
+            >
+              login
+            </p>
           </Link>
           <Link to="/signup">
-            <p className="home-footer-section-main-link">join</p>
+            <p
+              onClick={() => {
+                gsap.to(window, {
+                  duration: 0.6,
+                  scrollTo: { y: "#signup-page", offsetY: 100 },
+                  ease: "power3.inOut",
+                });
+              }}
+              className="home-footer-section-main-link"
+            >
+              join
+            </p>
           </Link>
         </div>
         <div className="home-footer-section-details">

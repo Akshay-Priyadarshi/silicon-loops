@@ -101,7 +101,14 @@ function MobileMenu() {
         <Link to="/login">
           <p
             className="mobile-menu-item mobile-menu-feature-item"
-            onClick={closeMobileMenu}
+            onClick={() => {
+              closeMobileMenu();
+              gsap.to(window, {
+                duration: 0.6,
+                scrollTo: { y: "#login-page", offsetY: 100 },
+                ease: "power3.inOut",
+              });
+            }}
           >
             login
           </p>
@@ -109,7 +116,14 @@ function MobileMenu() {
         <Link to="/signup">
           <p
             className="mobile-menu-item mobile-menu-feature-item"
-            onClick={closeMobileMenu}
+            onClick={() => {
+              closeMobileMenu();
+              gsap.to(window, {
+                duration: 0.6,
+                scrollTo: { y: "#signup-page", offsetY: 100 },
+                ease: "power3.inOut",
+              });
+            }}
           >
             signup
           </p>
