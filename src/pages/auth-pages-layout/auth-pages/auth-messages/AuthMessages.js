@@ -3,7 +3,7 @@ import "./AuthMessages.css";
 
 function AuthMessages() {
   return (
-    <div>
+    <div className="auth-messages-main">
       <h1>Auth Messages</h1>
     </div>
   );

@@ -1,5 +1,5 @@
 .auth-feeds-main {
-  height: fit-content;
   padding: 1rem 1rem;
   overflow-y: scroll;
+  min-height: 90vh;
 }

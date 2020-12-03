@@ -3,7 +3,7 @@ import "./AuthSearch.css";
 
 function AuthSearch() {
   return (
-    <div>
+    <div className="auth-search-main">
       <h1>Auth Search</h1>
     </div>
   );

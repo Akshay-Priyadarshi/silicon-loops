@@ -1,4 +1,5 @@
 .auth-account-main {
-  flex-grow: 1;
+  padding: 1rem 1rem;
   overflow-y: scroll;
+  min-height: 90vh;
 }
