@@ -10,7 +10,7 @@
   height: 7vh;
   border-top: 0.2px solid rgba(255, 255, 255, 0.25);
   box-shadow: 1px 1px 4px grey;
-  z-index: 100;
+  z-index: 50;
   padding: 0 1rem;
   display: flex;
   justify-content: space-between;

@@ -21,11 +21,11 @@ function AuthPagesLayout(props) {
 
   useEffect(() => {
     props.history.push(currentLink);
-  }, [currentLink]);
+  }, [currentLink, props.history]);
 
-  const switchView = (tab) => {
-    setTab(tab);
-    setCurrentLink(props.match.url + "/" + tab);
+  const switchView = (tabData) => {
+    setTab(tabData);
+    setCurrentLink(props.match.url + "/" + tabData);
   };
 
   return (

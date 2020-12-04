@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import HomePage from "./pages/home-page/HomePage";
 import LoginPage from "./pages/login-page/LoginPage";
@@ -9,10 +9,11 @@ import HomeHeader from "./components/home-header/HomeHeader";
 import MobileMenu from "./components/mobile-menu/MobileMenu";
 import useDataLayerValue from "./store/dataLayer";
 import { Route, Switch } from "react-router-dom";
-import FirebaseApp from "./services/firebaseApp";
 
 function App() {
   const [{ mobileMenuOpen, authUser }] = useDataLayerValue();
+
+  useEffect(() => {}, [authUser]);
 
   return (
     <div className="App">

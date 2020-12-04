@@ -1,5 +1,5 @@
 .signup-page-main {
-  height: 95vh;
+  min-height: 95vh;
   margin: 0 1rem;
   text-align: center;
   background-color: black;
@@ -16,8 +16,24 @@
 .signup-page-form {
   width: 100%;
 }
-.signup-page-email {
+
+.signup-page-error {
+  color: #d166b8;
+  margin: 0.5rem 0;
+  font-size: o.8rem;
+  font-weight: 300;
+  margin-bottom: -1rem;
+}
+
+.signup-page-email-box {
   margin-bottom: 2.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup-page-email {
   width: 100%;
   height: 2vh;
   padding: 1rem 0;
@@ -33,6 +49,7 @@
 }
 .signup-page-email-icon-img {
   width: 1.5rem;
+  height: 1.5rem;
 }
 .signup-page-email-field {
   flex: 9;
@@ -44,8 +61,16 @@
   border: none;
   border-left: 1px solid white;
 }
-.signup-page-password {
+
+.signup-page-password-box {
   margin-bottom: 2.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup-page-password {
   width: 100%;
   height: 2vh;
   padding: 1rem 0;
@@ -61,6 +86,7 @@
 }
 .signup-page-password-icon-img {
   width: 1.5rem;
+  height: 1.5rem;
 }
 .signup-page-password-field {
   flex: 9;
@@ -81,6 +107,11 @@
   border: none;
   color: white;
 }
+
+.signup-page-btn:disabled {
+  background-color: #e6394754;
+}
+
 .signup-page-btn > span {
   margin-left: 0.4rem;
 }
@@ -89,8 +120,8 @@
   width: 1rem;
 }
 
-.signup-page-form > p {
-  margin-bottom: 2rem;
+.signup-page-texts {
+  padding-bottom: 2rem;
   font-size: 1.1rem;
 }
 
@@ -118,4 +149,10 @@
 }
 .signup-page-bold-text > span {
   margin-left: 0.4rem;
+}
+
+@media (min-width: 0px) and (max-width: 325px) {
+  .signup-page-error {
+    margin-bottom: -1.8rem;
+  }
 }

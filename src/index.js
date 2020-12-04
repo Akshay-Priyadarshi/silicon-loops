@@ -6,12 +6,23 @@ import reportWebVitals from "./reportWebVitals";
 import { reducer, initialState } from "./store/reducer";
 import { DataLayer } from "./store/dataLayer";
 import { BrowserRouter } from "react-router-dom";
+import { transitions, positions, Provider as AlertProvider } from "react-alert";
+import AlertTemplate from "react-alert-template-basic";
+
+const alertOptions = {
+  position: positions.BOTTOM_CENTER,
+  timeout: 4000,
+  offset: "30px",
+  transition: transitions.FADE,
+};
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <DataLayer reducer={reducer} initialState={initialState}>
-        <App />
+        <AlertProvider template={AlertTemplate} {...alertOptions}>
+          <App />
+        </AlertProvider>
       </DataLayer>
     </BrowserRouter>
   </React.StrictMode>,
