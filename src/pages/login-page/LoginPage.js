@@ -9,9 +9,14 @@ import facebookIcon from "../../assets/facebook-colored.svg";
 import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { useFormik } from "formik";
-import { validateEmail, validatePassword } from "../../services/validations";
+import { validateEmail, validateNotBlank } from "../../services/validations";
 import customError from "../../services/customError";
-import { logInWithEmail } from "../../services/authService";
+import {
+  logInWithEmail,
+  logInWithGoogle,
+  logInWithFacebook,
+  logInWithGithub,
+} from "../../services/authService";
 import { useAlert } from "react-alert";
 
 function LoginPage(props) {
@@ -39,6 +44,15 @@ function LoginPage(props) {
     beepAnimation.play();
   }, []);
 
+  const processLogin = (loginResponse) => {
+    if (!loginResponse.errors) {
+      props.history.push("/auth");
+    } else {
+      console.log(loginResponse.errors.code);
+      alert.error(customError(loginResponse.errors));
+    }
+  };
+
   // initialValues parameter of Formik form
   const initialValues = {
     email: "",
@@ -48,11 +62,7 @@ function LoginPage(props) {
   // onSubmit parameter of Formik form
   const onSubmit = async (values) => {
     const loginResponse = await logInWithEmail(values.email, values.password);
-    if (!loginResponse.errors) {
-      props.history.push("/auth");
-    } else {
-      alert.error(customError(loginResponse.errors));
-    }
+    processLogin(loginResponse);
   };
 
   // validate parameter of Formik form
@@ -65,11 +75,9 @@ function LoginPage(props) {
     }
 
     // Password Validation
-    if (!validatePassword(values.password)) {
-      errors.password = "min 8! chars allowed-> a-z A-Z 0-9 - _ @ ";
+    if (!validateNotBlank(values.password)) {
+      errors.password = "are you dean? enter password!";
     }
-
-    console.log(loginForm.isValid);
     return errors;
   };
 
@@ -155,16 +163,28 @@ function LoginPage(props) {
             src={githubIcon}
             alt="github"
             className="login-page-social-icon"
+            onClick={async () => {
+              const loginResponse = await logInWithGithub();
+              processLogin(loginResponse);
+            }}
           />
           <img
             src={facebookIcon}
             alt="facebook"
             className="login-page-social-icon"
+            onClick={async () => {
+              const loginResponse = await logInWithFacebook();
+              processLogin(loginResponse);
+            }}
           />
           <img
             src={googleIcon}
             alt="google"
             className="login-page-social-icon"
+            onClick={async () => {
+              const loginResponse = await logInWithGoogle();
+              processLogin(loginResponse);
+            }}
           />
         </div>
         <Link to="/signup">

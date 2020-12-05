@@ -26,7 +26,7 @@
 }
 
 .login-page-email-box {
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -63,7 +63,7 @@
 }
 
 .login-page-password-box {
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -132,7 +132,7 @@
   padding: 0 1.5rem;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
   border-radius: 1rem;
   display: flex;
   justify-content: space-between;

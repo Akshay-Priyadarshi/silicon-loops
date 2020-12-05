@@ -2,14 +2,15 @@ import React, { useEffect } from "react";
 import "./MobileMenu.css";
 import closeBtn from "../../assets/close.svg";
 import useDataLayerValue from "../../store/dataLayer";
-import { openMobileMenu } from "../../store/actionConstants";
+import { openMobileMenu, setTab, tabs } from "../../store/actionConstants";
 import gsap from "gsap";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
 import { Link } from "react-router-dom";
+import { logOut } from "../../services/authService";
 gsap.registerPlugin(ScrollToPlugin);
 
 function MobileMenu() {
-  const [{ mobileMenuOpen }, dispatch] = useDataLayerValue();
+  const [{ authUser }, dispatch] = useDataLayerValue();
   const mobileMenuAnimation = gsap.timeline({ paused: true });
 
   useEffect(() => {
@@ -26,21 +27,20 @@ function MobileMenu() {
           y: 10,
           x: 30,
           opacity: 0,
-          duration: 0.4,
+          duration: 0.3,
           stagger: 0.1,
           ease: "power3.out",
         },
         "-=0.2"
       );
     mobileMenuAnimation.play();
-  }, []);
+  }, [mobileMenuAnimation]);
 
-  const closeMobileMenu = () => {
-    mobileMenuAnimation.reverse().then(() => {
-      dispatch({
-        type: openMobileMenu,
-        payload: false,
-      });
+  const closeMobileMenu = async () => {
+    await mobileMenuAnimation.reverse();
+    dispatch({
+      type: openMobileMenu,
+      payload: false,
     });
   };
 
@@ -98,36 +98,72 @@ function MobileMenu() {
             contact
           </p>
         </Link>
-        <Link to="/login">
-          <p
-            className="mobile-menu-item mobile-menu-feature-item"
-            onClick={() => {
-              closeMobileMenu();
-              gsap.to(window, {
-                duration: 0.6,
-                scrollTo: { y: "#login-page", offsetY: 100 },
-                ease: "power3.inOut",
-              });
-            }}
-          >
-            login
-          </p>
-        </Link>
-        <Link to="/signup">
-          <p
-            className="mobile-menu-item mobile-menu-feature-item"
-            onClick={() => {
-              closeMobileMenu();
-              gsap.to(window, {
-                duration: 0.6,
-                scrollTo: { y: "#signup-page", offsetY: 100 },
-                ease: "power3.inOut",
-              });
-            }}
-          >
-            signup
-          </p>
-        </Link>
+        {authUser ? (
+          <Link to="/auth/account">
+            <p
+              className="mobile-menu-item"
+              onClick={async () => {
+                // gsap.to(window, {
+                //   duration: 0.6,
+                //   scrollTo: { y: "#homepage-contact", offsetY: 50 },
+                //   ease: "power3.inOut",
+                // });
+                await closeMobileMenu();
+                dispatch({ type: setTab, payload: tabs.a });
+              }}
+            >
+              account
+            </p>
+          </Link>
+        ) : null}
+        {authUser ? null : (
+          <Link to="/login">
+            <p
+              className="mobile-menu-item mobile-menu-feature-item"
+              onClick={() => {
+                closeMobileMenu();
+                gsap.to(window, {
+                  duration: 0.6,
+                  scrollTo: { y: "#login-page", offsetY: 100 },
+                  ease: "power3.inOut",
+                });
+              }}
+            >
+              login
+            </p>
+          </Link>
+        )}
+        {authUser ? null : (
+          <Link to="/signup">
+            <p
+              className="mobile-menu-item mobile-menu-feature-item"
+              onClick={() => {
+                closeMobileMenu();
+                gsap.to(window, {
+                  duration: 0.6,
+                  scrollTo: { y: "#signup-page", offsetY: 100 },
+                  ease: "power3.inOut",
+                });
+              }}
+            >
+              signup
+            </p>
+          </Link>
+        )}
+        {authUser ? (
+          <Link to="/login">
+            <p
+              className="mobile-menu-item mobile-menu-feature-item"
+              onClick={async () => {
+                await closeMobileMenu();
+                dispatch({ type: setTab, payload: tabs.f });
+                logOut();
+              }}
+            >
+              logout
+            </p>
+          </Link>
+        ) : null}
       </div>
     </div>
   );

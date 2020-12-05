@@ -1,10 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./AuthPagesLayout.css";
-import AuthFeeds from "./auth-pages/auth-feeds/AuthFeeds";
-import AuthSearch from "./auth-pages/auth-search/AuthSearch";
-import AuthMessages from "./auth-pages/auth-messages/AuthMessages";
-import AuthAccount from "./auth-pages/auth-account/AuthAccount";
-import { Switch, Route } from "react-router-dom";
+import AuthPages from "./auth-pages/AuthPages";
 import { ReactComponent as FeedOutlined } from "../../assets/feed.svg";
 import { ReactComponent as FeedFilled } from "../../assets/feed-filled.svg";
 import { ReactComponent as SearchOutlined } from "../../assets/search.svg";
@@ -13,41 +9,27 @@ import { ReactComponent as MessageOutlined } from "../../assets/message.svg";
 import { ReactComponent as MessageFilled } from "../../assets/message-filled.svg";
 import { ReactComponent as AccountOutlined } from "../../assets/user.svg";
 import { ReactComponent as AccountFilled } from "../../assets/user-filled.svg";
+import useDataLayerValue from "../../store/dataLayer";
+import { tabs, setTab } from "../../store/actionConstants";
 
 function AuthPagesLayout(props) {
-  const tabs = { f: "feeds", s: "search", m: "messages", a: "account" };
-  const [tab, setTab] = useState(tabs.f);
-  const [currentLink, setCurrentLink] = useState(props.match.url + "/feeds");
+  const [{ tab }, dispatch] = useDataLayerValue();
 
   useEffect(() => {
-    props.history.push(currentLink);
-  }, [currentLink, props.history]);
+    props.history.push(props.match.url + "/" + tab);
+    console.log(tab);
+  }, [tab]);
 
   const switchView = (tabData) => {
-    setTab(tabData);
-    setCurrentLink(props.match.url + "/" + tabData);
+    dispatch({
+      type: setTab,
+      payload: tabData,
+    });
   };
 
   return (
     <div className="auth-pages-layout-main">
-      <Switch>
-        <Route path={props.match.url + "/feeds"} component={AuthFeeds} exact />
-        <Route
-          path={props.match.url + "/search"}
-          component={AuthSearch}
-          exact
-        />
-        <Route
-          path={props.match.url + "/messages"}
-          component={AuthMessages}
-          exact
-        />
-        <Route
-          path={props.match.url + "/account"}
-          component={AuthAccount}
-          exact
-        />
-      </Switch>
+      <AuthPages props={props} />
       <div className="auth-pages-layout-navbar-container">
         <div
           onClick={() => switchView(tabs.f)}
@@ -90,7 +72,6 @@ function AuthPagesLayout(props) {
           )}
         </div>
       </div>
-      {console.log(currentLink)}
     </div>
   );
 }

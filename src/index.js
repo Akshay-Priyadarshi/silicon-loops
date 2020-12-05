@@ -11,7 +11,7 @@ import AlertTemplate from "react-alert-template-basic";
 
 const alertOptions = {
   position: positions.BOTTOM_CENTER,
-  timeout: 4000,
+  timeout: 5000,
   offset: "30px",
   transition: transitions.FADE,
 };

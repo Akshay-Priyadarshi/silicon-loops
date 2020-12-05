@@ -14,7 +14,12 @@ import {
   validatePassword,
   validatePasswordMatch,
 } from "../../services/validations";
-import { signUpWithEmail } from "../../services/authService";
+import {
+  signUpWithEmail,
+  logInWithFacebook,
+  logInWithGoogle,
+  logInWithGithub,
+} from "../../services/authService";
 import { useAlert } from "react-alert";
 import customError from "../../services/customError";
 
@@ -43,6 +48,15 @@ function SignupPage(props) {
     beepAnimation.play();
   }, []);
 
+  const processSignUp = (signUpResponse) => {
+    if (!signUpResponse.errors) {
+      props.history.push("/auth");
+    } else {
+      console.log(signUpResponse.errors.code);
+      alert.error(customError(signUpResponse.errors));
+    }
+  };
+
   // initialValues parameter of Formik form
   const initialValues = {
     email: "",
@@ -53,12 +67,7 @@ function SignupPage(props) {
   // onSubmit parameter of Formik form
   const onSubmit = async (values) => {
     const signupResponse = await signUpWithEmail(values.email, values.password);
-    if (!signupResponse.errors) {
-      console.log(signupResponse.data);
-      props.history.push("/auth");
-    } else {
-      alert.error(customError(signupResponse.errors));
-    }
+    processSignUp(signupResponse);
   };
 
   // validate parameter of Formik form
@@ -182,24 +191,34 @@ function SignupPage(props) {
             />
           </span>
         </button>
-
-        <p className="signup-page-texts">forgot password?</p>
         <p className="signup-page-texts">or connect with</p>
         <div className="signup-page-social-icons-container">
           <img
             src={githubIcon}
             alt="github"
             className="signup-page-social-icon"
+            onClick={async () => {
+              const signupResponse = await logInWithGithub();
+              processSignUp(signupResponse);
+            }}
           />
           <img
             src={facebookIcon}
             alt="facebook"
             className="signup-page-social-icon"
+            onClick={async () => {
+              const signupResponse = await logInWithFacebook();
+              processSignUp(signupResponse);
+            }}
           />
           <img
             src={googleIcon}
             alt="google"
             className="signup-page-social-icon"
+            onClick={async () => {
+              const signupResponse = await logInWithGoogle();
+              processSignUp(signupResponse);
+            }}
           />
         </div>
         <Link to="/login">

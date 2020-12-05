@@ -2,7 +2,8 @@ import * as actionConstants from "./actionConstants";
 
 export const initialState = {
   mobileMenuOpen: false,
-  authUser: true,
+  authUser: null,
+  tab: actionConstants.tabs.f,
 };
 
 export const reducer = (state, action) => {
@@ -17,6 +18,11 @@ export const reducer = (state, action) => {
       return {
         ...state,
         authUser: action.payload,
+      };
+    case actionConstants.setTab:
+      return {
+        ...state,
+        tab: action.payload,
       };
     default:
       return state;

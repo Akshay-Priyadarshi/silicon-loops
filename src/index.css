@@ -7,6 +7,11 @@
   box-sizing: border-box;
 }
 
+*::-webkit-scrollbar {
+  width: 0px; /* For Chrome, Safari, and Opera */
+  display: none;
+}
+
 html {
   font-size: 14px;
   scroll-behavior: smooth;

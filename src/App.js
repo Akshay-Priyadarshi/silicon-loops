@@ -8,12 +8,36 @@ import HomeFooter from "./components/home-footer/HomeFooter";
 import HomeHeader from "./components/home-header/HomeHeader";
 import MobileMenu from "./components/mobile-menu/MobileMenu";
 import useDataLayerValue from "./store/dataLayer";
+import { setAuthUser } from "./store/actionConstants";
 import { Route, Switch } from "react-router-dom";
+import { auth, db } from "./services/firebaseApp";
+import { userConverter } from "./models/UserModel";
 
 function App() {
-  const [{ mobileMenuOpen, authUser }] = useDataLayerValue();
+  const [{ mobileMenuOpen, authUser }, dispatch] = useDataLayerValue();
 
-  useEffect(() => {}, [authUser]);
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        const userFromDB = await db
+          .collection("users")
+          .doc(user.uid)
+          .withConverter(userConverter)
+          .get();
+        dispatch({
+          type: setAuthUser,
+          payload: userFromDB.data(),
+        });
+      } else {
+        dispatch({
+          type: setAuthUser,
+          payload: null,
+        });
+      }
+    });
+
+    return () => unsubscribe();
+  }, [dispatch]);
 
   return (
     <div className="App">
@@ -23,7 +47,8 @@ function App() {
         <Route path="/" exact component={HomePage} />
         <Route path="/login" exact component={LoginPage} />
         <Route path="/signup" exact component={SignUpPage} />
-        <Route path="/auth" component={AuthPagesLayout} />
+        {authUser ? <Route path="/auth" component={AuthPagesLayout} /> : null}
+        <Route path="/login" component={LoginPage} />
       </Switch>
       {authUser ? null : <HomeFooter />}
     </div>

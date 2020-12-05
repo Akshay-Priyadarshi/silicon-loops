@@ -1,6 +1,7 @@
 .auth-pages-layout-main {
   width: 100vw;
   color: white;
+  position: fixed;
 }
 
 .auth-pages-layout-navbar-container {
