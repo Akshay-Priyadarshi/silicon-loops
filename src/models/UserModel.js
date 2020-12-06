@@ -1,22 +1,3 @@
-export default class UserModel {
-  userDetails;
-  upvotedPosts;
-  downvotedPosts;
-  savedPosts;
-
-  constructor({
-    userDetails = new UserDetails(),
-    upvotedPosts = [],
-    downvotedPosts = [],
-    savedPosts = [],
-  }) {
-    this.userDetails = userDetails;
-    this.upvotedPosts = upvotedPosts;
-    this.downvotedPosts = downvotedPosts;
-    this.savedPosts = savedPosts;
-  }
-}
-
 export class UserDetails {
   userEmail;
   emailVerified;
@@ -32,11 +13,12 @@ export class UserDetails {
     userEmail = "",
     batchOf = "",
     branch = "",
-    dob = null,
+    dob = "",
     userDPURL = "",
     userName = "",
     workingAt = "",
   }) {
+    this.emailVerified = emailVerified;
     this.userEmail = userEmail;
     this.batchOf = batchOf;
     this.branch = branch;
