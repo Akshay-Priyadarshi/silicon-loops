@@ -86,6 +86,48 @@ function HomeFooter() {
               join
             </p>
           </Link>
+          <Link to="/terms">
+            <p
+              onClick={() => {
+                gsap.to(window, {
+                  duration: 0.6,
+                  scrollTo: { y: "#terms-of-service", offsetY: 50 },
+                  ease: "power3.inOut",
+                });
+              }}
+              className="home-footer-section-main-link"
+            >
+              terms
+            </p>
+          </Link>
+          <Link to="/privacy-policy">
+            <p
+              onClick={() => {
+                gsap.to(window, {
+                  duration: 0.6,
+                  scrollTo: { y: "#privacy-policy", offsetY: 50 },
+                  ease: "power3.inOut",
+                });
+              }}
+              className="home-footer-section-main-link"
+            >
+              privacy policy
+            </p>
+          </Link>
+          <Link to="/disclaimer">
+            <p
+              onClick={() => {
+                gsap.to(window, {
+                  duration: 0.6,
+                  scrollTo: { y: "#disclaimer", offsetY: 50 },
+                  ease: "power3.inOut",
+                });
+              }}
+              className="home-footer-section-main-link"
+            >
+              disclaimer
+            </p>
+          </Link>
         </div>
         <div className="home-footer-section-details">
           <div className="home-footer-section-part">

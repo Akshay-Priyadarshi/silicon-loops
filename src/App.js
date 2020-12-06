@@ -3,6 +3,11 @@ import "./App.css";
 import HomePage from "./pages/home-page/HomePage";
 import LoginPage from "./pages/login-page/LoginPage";
 import SignUpPage from "./pages/signup-page/SignupPage";
+import TermsOfService from "./pages/terms-of-service/TermsOfService";
+import PrivacyPolicy from "./pages/privacy-policy/PrivacyPolicy";
+import Disclaimer from "./pages/disclaimer/Disclaimer";
+import DataDeletion from "./pages/data-deletion/DataDeletion";
+import PageNotFound from "./pages/page-not-found/PageNotFound";
 import AuthPagesLayout from "./pages/auth-pages-layout/AuthPagesLayout";
 import HomeFooter from "./components/home-footer/HomeFooter";
 import HomeHeader from "./components/home-header/HomeHeader";
@@ -48,7 +53,13 @@ function App() {
         <Route path="/login" exact component={LoginPage} />
         <Route path="/signup" exact component={SignUpPage} />
         {authUser ? <Route path="/auth" component={AuthPagesLayout} /> : null}
-        <Route path="/login" component={LoginPage} />
+        <Route path="/terms" exact component={TermsOfService} />
+        <Route path="/privacy-policy" exact component={PrivacyPolicy} />
+        <Route path="/disclaimer" exact component={Disclaimer} />
+        <Route path="/data-deletion" exact component={DataDeletion} />
+        <Route path="*">
+          <PageNotFound />
+        </Route>
       </Switch>
       {authUser ? null : <HomeFooter />}
     </div>

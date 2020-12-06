@@ -110,7 +110,6 @@ export const logInWithGithub = async (email, password) => {
 export const logOut = async (props) => {
   try {
     await auth.signOut();
-    props.history.push("/login");
   } catch (e) {
     console.log(e.message);
   }

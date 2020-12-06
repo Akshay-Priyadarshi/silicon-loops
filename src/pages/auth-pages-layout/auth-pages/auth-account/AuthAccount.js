@@ -7,7 +7,14 @@ function AuthAccount(props) {
   return (
     <div className="auth-account-main">
       <h1>Auth Account</h1>
-      <button onClick={() => logOut(props)}>logout</button>
+      <button
+        onClick={() => {
+          logOut();
+          props.history.push("/login");
+        }}
+      >
+        logout
+      </button>
     </div>
   );
 }
