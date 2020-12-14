@@ -8,8 +8,11 @@ import { ReactComponent as DownvoteFilled } from "../../assets/downvote-filled.s
 import { ReactComponent as Bookmark } from "../../assets/bookmark.svg";
 import { ReactComponent as BookmarkFilled } from "../../assets/bookmark-filled.svg";
 import { ReactComponent as Attach } from "../../assets/attach.svg";
+import { ReactComponent as UserDP } from "../../assets/user.svg";
+import useDataLayerValue from "../../store/dataLayer";
 
-function Post() {
+function Post({ post }) {
+  const [{ authUser }] = useDataLayerValue();
   const [upvoted, setUpvoted] = useState(false);
   const [downvoted, setDownvoted] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -17,29 +20,29 @@ function Post() {
   return (
     <div className="post-main">
       <div className="post-left">
-        <img
-          className="post-user-dp"
-          src="https://pbs.twimg.com/profile_images/1284410428479533063/evEEoeub_400x400.jpg"
-          alt="user-dp"
-        />
+        {post.postedBy.userDPURL ? (
+          <img
+            src={post.postedBy.userDPURL}
+            className="post-user-dp"
+            alt="post-user-dp"
+          />
+        ) : (
+          <UserDP className="post-user-fake-img" alt="user-avatar" />
+        )}
       </div>
       <div className="post-right">
-        <div className="post-user-name">Akshay Priyadarshi</div>
-        <div className="post-content">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus unde
-          necessitatibu
-        </div>
-        <button className="post-attached-file-btn">
+        <div className="post-user-name">{post.postedBy.userName}</div>
+        <div className="post-content">{post.postContent}</div>
+        {/* <button className="post-attached-file-btn">
           Open Attachment
           <span>
             <Attach className="post-attach-file-icon" />
           </span>
-        </button>
-        <img
-          src="https://images-na.ssl-images-amazon.com/images/I/81HgVEqBVuL._SL1500_.jpg"
-          alt="post-img"
-          className="post-img"
-        />
+        </button> */}
+        {console.log("url ", post.postImageURL)}
+        {post.postImageURL === "" ? null : (
+          <img src={post.postImageURL} alt="post-img" className="post-img" />
+        )}
         <div className="post-actions-container">
           <div className="post-action">
             <div className="post-action-icon">

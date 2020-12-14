@@ -13,6 +13,10 @@ export function validateNotBlank(text) {
   return text.trim() === "" ? false : true;
 }
 
+export function validateNotNull(item) {
+  return item === null ? false : true;
+}
+
 export function validatePasswordMatch(password, cPassword) {
   return password.trim() === cPassword.trim() ? true : false;
 }

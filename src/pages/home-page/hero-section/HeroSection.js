@@ -3,6 +3,8 @@ import "./HeroSection.css";
 import connected from "../../../assets/undraw_connected_world_wuay.svg";
 import gsap from "gsap";
 import { Link } from "react-router-dom";
+import { currentUser } from "../../../services/authService";
+import { ReactComponent as Arrow } from "../../../assets/arrow.svg";
 
 function HeroSection() {
   useEffect(() => {
@@ -40,11 +42,19 @@ function HeroSection() {
           we aim to build a community where we can help each other &amp; grow as
           a team.
         </p>
-        <Link to="/signup">
-          <button className="hero-section-cta-btn initial-hero-btn-animation">
-            JOIN TODAY
-          </button>
-        </Link>
+        {currentUser() ? (
+          <Link to="/auth/feeds">
+            <button className="hero-section-cta-btn initial-hero-btn-animation">
+              FEEDS
+            </button>
+          </Link>
+        ) : (
+          <Link to="/signup">
+            <button className="hero-section-cta-btn initial-hero-btn-animation">
+              JOIN TODAY
+            </button>
+          </Link>
+        )}
       </div>
       <div className="hero-section-content-right">
         <img

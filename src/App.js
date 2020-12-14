@@ -17,6 +17,7 @@ import { setAuthUser } from "./store/actionConstants";
 import { Route, Switch } from "react-router-dom";
 import { auth, db } from "./services/firebaseApp";
 import { userConverter } from "./models/UserModel";
+import { currentUser } from "./services/authService";
 
 function App() {
   const [{ mobileMenuOpen, authUser }, dispatch] = useDataLayerValue();
@@ -52,7 +53,9 @@ function App() {
         <Route path="/" exact component={HomePage} />
         <Route path="/login" exact component={LoginPage} />
         <Route path="/signup" exact component={SignUpPage} />
-        {authUser ? <Route path="/auth" component={AuthPagesLayout} /> : null}
+        {currentUser ? (
+          <Route path="/auth" component={AuthPagesLayout} />
+        ) : null}
         <Route path="/terms" exact component={TermsOfService} />
         <Route path="/privacy-policy" exact component={PrivacyPolicy} />
         <Route path="/disclaimer" exact component={Disclaimer} />

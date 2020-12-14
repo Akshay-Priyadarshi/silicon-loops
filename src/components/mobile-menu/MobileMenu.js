@@ -30,6 +30,7 @@ function MobileMenu() {
           duration: 0.3,
           stagger: 0.1,
           ease: "power3.out",
+          autoAlpha: 1,
         },
         "-=0.2"
       );

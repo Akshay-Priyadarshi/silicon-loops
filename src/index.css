@@ -25,6 +25,10 @@ li {
   list-style: none;
 }
 
+.hidden {
+  display: none;
+}
+
 body {
   font-family: "Montserrat", sans-serif;
   -webkit-font-smoothing: antialiased;

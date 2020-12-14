@@ -1,0 +1,121 @@
+.new-post-main {
+  color: #a8dadc;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow-y: scroll;
+  position: relative;
+}
+
+.new-post-user-img {
+  width: 12vw;
+  height: 12vw;
+  object-fit: contain;
+  border-radius: 50%;
+  margin: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.new-post-user-fake-img {
+  fill: #a8dadc;
+  width: 12vw;
+  height: 12vw;
+  margin: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.new-post-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.new-post-content-input {
+  background-color: rgba(128, 128, 128, 0.253);
+  color: #a8dadc;
+  border: none;
+  border-radius: 1rem;
+  outline: none;
+  min-width: 100%;
+  min-height: 20vh;
+  padding: 1rem;
+  overflow-y: scroll;
+  margin: 1rem 0;
+}
+
+.new-post-image-upload {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  width: 90%;
+}
+
+.new-post-attach-icon {
+  width: 2rem;
+  height: 2rem;
+  fill: #a8dadc;
+}
+
+.CircularProgressbar {
+  width: 3rem !important;
+  height: 3rem;
+}
+
+.new-post-image-preview-container {
+  width: 100%;
+  position: relative !important;
+  margin-bottom: 1rem;
+}
+
+.new-post-image-preview {
+  width: 100%;
+  object-fit: contain;
+}
+
+.new-post-remove-preview-container {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.507);
+  border-radius: 50%;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+.new-post-remove-preview-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: #a8dadc;
+}
+
+.new-post-if-job {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.new-post-if-job > label {
+  margin-right: 1rem;
+}
+
+.new-post-submit-btn {
+  padding: 0.4rem 1rem;
+  font-size: 1rem;
+  margin: 1rem 0;
+  color: #a8dadc;
+  background-color: #e63946;
+  border: none;
+  border-radius: 1rem;
+  font-weight: bold;
+}
+
+.new-post-submit-btn:disabled {
+  background-color: #e6394775;
+  color: grey;
+}

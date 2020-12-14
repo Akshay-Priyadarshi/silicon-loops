@@ -14,6 +14,9 @@ const alertOptions = {
   timeout: 5000,
   offset: "30px",
   transition: transitions.FADE,
+  containerStyle: {
+    zIndex: 10000,
+  },
 };
 
 ReactDOM.render(

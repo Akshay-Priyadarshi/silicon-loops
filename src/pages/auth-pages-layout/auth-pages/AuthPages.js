@@ -5,6 +5,7 @@ import AuthFeeds from "./auth-feeds/AuthFeeds";
 import AuthSearch from "./auth-search/AuthSearch";
 import AuthMessages from "./auth-messages/AuthMessages";
 import AuthAccount from "./auth-account/AuthAccount";
+import PageNotFound from "../../page-not-found/PageNotFound";
 
 function AuthPages({ props }) {
   return (
@@ -26,6 +27,9 @@ function AuthPages({ props }) {
           component={AuthAccount}
           exact
         />
+        <Route path="*">
+          <PageNotFound />
+        </Route>
       </Switch>
     </div>
   );
