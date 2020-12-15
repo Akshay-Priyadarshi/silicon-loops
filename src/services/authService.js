@@ -19,10 +19,11 @@ export const logInWithEmail = async (email, password) => {
   }
 };
 
-export const signUpWithEmail = async (email, password) => {
+export const signUpWithEmail = async (name, email, password) => {
   try {
     const userData = await auth.createUserWithEmailAndPassword(email, password);
     if (userData) {
+      await userData.user.updateProfile({ displayName: name });
       await createUserInDB(userData.user);
       return new ResponseModel({ data: userData.user });
     }
@@ -77,7 +78,9 @@ export const logOut = async (props) => {
 };
 
 export const currentUser = () => {
-  return auth.currentUser;
+  const cu = auth.currentUser;
+  console.log(cu);
+  return cu;
 };
 
 const createUserInDB = async (user) => {

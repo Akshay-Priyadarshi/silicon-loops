@@ -19,6 +19,12 @@ const alertOptions = {
   },
 };
 
+if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
+  // dev code
+} else {
+  console.log = () => {};
+}
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>

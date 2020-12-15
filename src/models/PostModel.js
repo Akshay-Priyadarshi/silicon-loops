@@ -26,14 +26,14 @@ export default class PostDetails {
 
 export const postConverter = {
   toFirestore: function (post) {
-    console.log("to firebase", post);
+    // console.log("to firebase", post);
     return {
       ...post,
     };
   },
   fromFirestore: function (snapshot, options) {
     const data = snapshot.data(options);
-    console.log("from firebase", data);
+    // console.log("from firebase", data);
     return new PostDetails({
       ...data,
     });

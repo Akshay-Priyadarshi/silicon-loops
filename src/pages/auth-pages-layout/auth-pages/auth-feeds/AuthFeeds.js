@@ -16,6 +16,7 @@ function AuthFeeds() {
     const unsubscribe = db
       .collection("posts")
       .withConverter(postConverter)
+      .orderBy("postedAt", "desc")
       .onSnapshot((res) => {
         const recievedPosts = res.docs.map((post) => {
           return { id: post.id, data: post.data() };
@@ -55,7 +56,6 @@ function AuthFeeds() {
         <NewPost setIsOpen={setIsOpen} />
       </Modal>
       {posts.map((post) => {
-        console.log(post);
         return <Post key={post.id} post={post.data} />;
       })}
       <h3 className="auth-feeds-end-text">That's all for now!</h3>

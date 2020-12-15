@@ -12,7 +12,6 @@ import { ReactComponent as UserDP } from "../../assets/user.svg";
 import useDataLayerValue from "../../store/dataLayer";
 
 function Post({ post }) {
-  const [{ authUser }] = useDataLayerValue();
   const [upvoted, setUpvoted] = useState(false);
   const [downvoted, setDownvoted] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -39,7 +38,6 @@ function Post({ post }) {
             <Attach className="post-attach-file-icon" />
           </span>
         </button> */}
-        {console.log("url ", post.postImageURL)}
         {post.postImageURL === "" ? null : (
           <img src={post.postImageURL} alt="post-img" className="post-img" />
         )}

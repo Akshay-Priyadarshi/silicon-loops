@@ -3,6 +3,7 @@ import "./SignupPage.css";
 import { ReactComponent as ArrowIcon } from "../../assets/arrow.svg";
 import { ReactComponent as EmailIcon } from "../../assets/email.svg";
 import { ReactComponent as LockIcon } from "../../assets/padlock.svg";
+import { ReactComponent as Name } from "../../assets/user.svg";
 import githubIcon from "../../assets/github-colored.svg";
 import googleIcon from "../../assets/google-colored.svg";
 import facebookIcon from "../../assets/facebook-colored.svg";
@@ -13,6 +14,7 @@ import {
   validateEmail,
   validatePassword,
   validatePasswordMatch,
+  validateNotBlank,
 } from "../../services/validations";
 import {
   signUpWithEmail,
@@ -59,6 +61,7 @@ function SignupPage(props) {
 
   // initialValues parameter of Formik form
   const initialValues = {
+    name: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -66,13 +69,22 @@ function SignupPage(props) {
 
   // onSubmit parameter of Formik form
   const onSubmit = async (values) => {
-    const signupResponse = await signUpWithEmail(values.email, values.password);
+    console.log(values);
+    const signupResponse = await signUpWithEmail(
+      values.name,
+      values.email,
+      values.password
+    );
     processSignUp(signupResponse);
   };
 
   // validate parameter of Formik form
   const validate = (values) => {
     let errors = {};
+
+    if (!validateNotBlank(values.name)) {
+      errors.name = "name please!";
+    }
 
     // Email Validation
     if (!validateEmail(values.email)) {
@@ -109,6 +121,28 @@ function SignupPage(props) {
         autoComplete="off"
         noValidate
       >
+        <div className="signup-page-email-box">
+          <div className="signup-page-email">
+            <div className="signup-page-email-icon">
+              <Name
+                className="signup-page-email-icon-img"
+                alt="signup-page-email-img"
+              />
+            </div>
+            <input
+              type="text"
+              className="signup-page-email-field"
+              placeholder="full name"
+              name="name"
+              value={signupForm.values.name}
+              onChange={signupForm.handleChange}
+              onBlur={signupForm.handleBlur}
+            />
+          </div>
+          {signupForm.touched.name && signupForm.errors.name ? (
+            <p className="signup-page-error">{signupForm.errors.name}</p>
+          ) : null}
+        </div>
         <div className="signup-page-email-box">
           <div className="signup-page-email">
             <div className="signup-page-email-icon">

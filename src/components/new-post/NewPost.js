@@ -27,7 +27,7 @@ function NewPost({ setIsOpen }) {
     imagePreviewContainer.current.hidden = true;
     const newId = db.collection("posts").doc().id;
     setNewPostId(newId);
-  }, []);
+  }, [authUser]);
 
   const imageUpload = async (e) => {
     try {

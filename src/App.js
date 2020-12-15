@@ -30,12 +30,12 @@ function App() {
           .doc(user.uid)
           .withConverter(userConverter)
           .get();
-        dispatch({
+        await dispatch({
           type: setAuthUser,
           payload: userFromDB.data(),
         });
       } else {
-        dispatch({
+        await dispatch({
           type: setAuthUser,
           payload: null,
         });
@@ -47,19 +47,21 @@ function App() {
 
   return (
     <div className="App">
+      {console.log("currentUser", currentUser())}
+      {console.log("authUser", authUser)}
       <HomeHeader />
       {mobileMenuOpen ? <MobileMenu /> : null}
       <Switch>
         <Route path="/" exact component={HomePage} />
         <Route path="/login" exact component={LoginPage} />
         <Route path="/signup" exact component={SignUpPage} />
-        {currentUser ? (
-          <Route path="/auth" component={AuthPagesLayout} />
-        ) : null}
         <Route path="/terms" exact component={TermsOfService} />
         <Route path="/privacy-policy" exact component={PrivacyPolicy} />
         <Route path="/disclaimer" exact component={Disclaimer} />
         <Route path="/data-deletion" exact component={DataDeletion} />
+        {currentUser ? (
+          <Route path="/auth" component={AuthPagesLayout} />
+        ) : null}
         <Route path="*">
           <PageNotFound />
         </Route>
