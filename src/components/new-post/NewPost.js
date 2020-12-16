@@ -13,12 +13,14 @@ import { ReactComponent as Close } from "../../assets/close.svg";
 import { ReactComponent as UserDP } from "../../assets/user.svg";
 import "react-circular-progressbar/dist/styles.css";
 import useDataLayerValue from "../../store/dataLayer";
+import RingLoader from "react-spinners/RingLoader";
 
 function NewPost({ setIsOpen }) {
   const [{ authUser }] = useDataLayerValue();
   const imagePreview = useRef(null);
   const imagePreviewContainer = useRef(null);
   const [newPostId, setNewPostId] = useState("");
+  const [postUploading, setPostUploading] = useState(false);
   let downloadURL = "";
 
   const alert = useAlert();
@@ -27,10 +29,11 @@ function NewPost({ setIsOpen }) {
     imagePreviewContainer.current.hidden = true;
     const newId = db.collection("posts").doc().id;
     setNewPostId(newId);
-  }, [authUser]);
+  }, []);
 
   const imageUpload = async (e) => {
     try {
+      setPostUploading(true);
       const file = document.getElementById("postImageUpload").files[0];
       if (file) {
         const newImageRef = storageRef.child(
@@ -41,6 +44,7 @@ function NewPost({ setIsOpen }) {
         downloadURL = await imageUploadTask.ref.getDownloadURL();
         console.log("url", downloadURL);
         console.log("Done Upload");
+        setPostUploading(false);
       }
     } catch (e) {
       console.log(e);
@@ -84,20 +88,24 @@ function NewPost({ setIsOpen }) {
   };
 
   const onSubmit = async (values) => {
-    await imageUpload();
-    const newPost = new PostDetails({
-      isJobPost: values.isJobPost,
-      postContent: values.postContent,
-      postImageURL: downloadURL,
-      postedAt: firebase.firestore.FieldValue.serverTimestamp(),
-      postedBy: {
-        userId: currentUser().uid,
-        userDPURL: authUser.userDPURL,
-        userName: authUser.userName,
-      },
-    });
-    await savePost(newPost, newPostId);
-    await setIsOpen(false);
+    try {
+      await imageUpload();
+      const newPost = new PostDetails({
+        isJobPost: values.isJobPost,
+        postContent: values.postContent,
+        postImageURL: downloadURL,
+        postedAt: firebase.firestore.FieldValue.serverTimestamp(),
+        postedBy: {
+          userId: currentUser().uid,
+          userDPURL: authUser.userDPURL || null,
+          userName: authUser.userName,
+        },
+      });
+      await savePost(newPost, newPostId);
+      await setIsOpen(false);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const newPostForm = useFormik({
@@ -183,6 +191,14 @@ function NewPost({ setIsOpen }) {
           Post
         </button>
       </form>
+      <div className="new-post-loading-container">
+        <RingLoader
+          css={"new-post-loader"}
+          size={150}
+          color={"#e63946"}
+          loading={postUploading}
+        />
+      </div>
     </div>
   );
 }

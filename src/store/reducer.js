@@ -4,6 +4,7 @@ export const initialState = {
   mobileMenuOpen: false,
   authUser: null,
   tab: actionConstants.tabs.f,
+  unsubscribeUserFromDB: () => {},
 };
 
 export const reducer = (state, action) => {
@@ -23,6 +24,11 @@ export const reducer = (state, action) => {
       return {
         ...state,
         tab: action.payload,
+      };
+    case actionConstants.setUnsubscribeUserFromDB:
+      return {
+        ...state,
+        unsubscribeUserFromDB: action.payload,
       };
     default:
       return state;

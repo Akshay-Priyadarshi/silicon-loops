@@ -13,7 +13,7 @@ import HomeFooter from "./components/home-footer/HomeFooter";
 import HomeHeader from "./components/home-header/HomeHeader";
 import MobileMenu from "./components/mobile-menu/MobileMenu";
 import useDataLayerValue from "./store/dataLayer";
-import { setAuthUser } from "./store/actionConstants";
+import { setAuthUser, setUnsubscribeUserFromDB } from "./store/actionConstants";
 import { Route, Switch } from "react-router-dom";
 import { auth, db } from "./services/firebaseApp";
 import { userConverter } from "./models/UserModel";
@@ -23,16 +23,23 @@ function App() {
   const [{ mobileMenuOpen, authUser }, dispatch] = useDataLayerValue();
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+    auth.onAuthStateChanged(async (user) => {
+      let unsubscribeUserFromDB = () => {};
       if (user) {
-        const userFromDB = await db
+        unsubscribeUserFromDB = db
           .collection("users")
-          .doc(user.uid)
           .withConverter(userConverter)
-          .get();
+          .doc(user.uid)
+          .onSnapshot(async (snap) => {
+            console.log(snap.data());
+            await dispatch({
+              type: setAuthUser,
+              payload: snap.data(),
+            });
+          });
         await dispatch({
-          type: setAuthUser,
-          payload: userFromDB.data(),
+          type: setUnsubscribeUserFromDB,
+          payload: unsubscribeUserFromDB,
         });
       } else {
         await dispatch({
@@ -41,8 +48,6 @@ function App() {
         });
       }
     });
-
-    return () => unsubscribe();
   }, [dispatch]);
 
   return (
@@ -59,14 +64,14 @@ function App() {
         <Route path="/privacy-policy" exact component={PrivacyPolicy} />
         <Route path="/disclaimer" exact component={Disclaimer} />
         <Route path="/data-deletion" exact component={DataDeletion} />
-        {currentUser ? (
+        {currentUser() ? (
           <Route path="/auth" component={AuthPagesLayout} />
         ) : null}
         <Route path="*">
           <PageNotFound />
         </Route>
       </Switch>
-      {authUser ? null : <HomeFooter />}
+      {currentUser() ? null : <HomeFooter />}
     </div>
   );
 }

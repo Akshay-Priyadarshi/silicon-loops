@@ -13,12 +13,12 @@ import useDataLayerValue from "../../store/dataLayer";
 import { tabs, setTab } from "../../store/actionConstants";
 
 function AuthPagesLayout(props) {
-  const [{ tab }, dispatch] = useDataLayerValue();
+  const [{ tab, authUser }, dispatch] = useDataLayerValue();
 
   useEffect(() => {
     props.history.push(props.match.url + "/" + tab);
     console.log(tab);
-  }, [tab]);
+  }, [tab, props.match.url, props.history]);
 
   const switchView = (tabData) => {
     dispatch({
@@ -29,6 +29,7 @@ function AuthPagesLayout(props) {
 
   return (
     <div className="auth-pages-layout-main">
+      {console.log("authuser from new post", authUser)}
       <AuthPages props={props} />
       <div className="auth-pages-layout-navbar-container">
         <div

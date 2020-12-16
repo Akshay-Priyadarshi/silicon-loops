@@ -7,17 +7,41 @@ import { ReactComponent as Downvote } from "../../assets/downvote.svg";
 import { ReactComponent as DownvoteFilled } from "../../assets/downvote-filled.svg";
 import { ReactComponent as Bookmark } from "../../assets/bookmark.svg";
 import { ReactComponent as BookmarkFilled } from "../../assets/bookmark-filled.svg";
-import { ReactComponent as Attach } from "../../assets/attach.svg";
+import { ReactComponent as Close } from "../../assets/close.svg";
 import { ReactComponent as UserDP } from "../../assets/user.svg";
-import useDataLayerValue from "../../store/dataLayer";
+import Modal from "react-modal";
+// import useDataLayerValue from "../../store/dataLayer";
 
 function Post({ post }) {
+  const [modalIsOpen, setIsOpen] = useState(false);
   const [upvoted, setUpvoted] = useState(false);
   const [downvoted, setDownvoted] = useState(false);
   const [saved, setSaved] = useState(false);
 
   return (
     <div className="post-main">
+      <Modal
+        isOpen={modalIsOpen}
+        shouldCloseOnOverlayClick={true}
+        shouldCloseOnEsc={true}
+        onRequestClose={() => setIsOpen(false)}
+        className="PostModal"
+        overlayClassName="PostOverlay"
+        contentLabel="Modal Image Enlarged"
+        ariaHideApp={false}
+      >
+        <div
+          className="post-modal-close-container"
+          onClick={() => setIsOpen(false)}
+        >
+          <Close className="post-modal-close" />
+        </div>
+        <img
+          src={post.postImageURL}
+          className="modal-image-enlarged"
+          alt="modal-enlarged"
+        />
+      </Modal>
       <div className="post-left">
         {post.postedBy.userDPURL ? (
           <img
@@ -39,7 +63,14 @@ function Post({ post }) {
           </span>
         </button> */}
         {post.postImageURL === "" ? null : (
-          <img src={post.postImageURL} alt="post-img" className="post-img" />
+          <div className="post-img-container">
+            <img
+              src={post.postImageURL}
+              alt="post-img"
+              className="post-img"
+              onClick={() => setIsOpen(true)}
+            />
+          </div>
         )}
         <div className="post-actions-container">
           <div className="post-action">

@@ -10,7 +10,7 @@ import { logOut } from "../../services/authService";
 gsap.registerPlugin(ScrollToPlugin);
 
 function MobileMenu() {
-  const [{ authUser }, dispatch] = useDataLayerValue();
+  const [{ authUser, unsubscribeUserFromDB }, dispatch] = useDataLayerValue();
   const mobileMenuAnimation = gsap.timeline({ paused: true });
 
   useEffect(() => {
@@ -158,6 +158,7 @@ function MobileMenu() {
               onClick={async () => {
                 await closeMobileMenu();
                 dispatch({ type: setTab, payload: tabs.f });
+                unsubscribeUserFromDB();
                 logOut();
               }}
             >

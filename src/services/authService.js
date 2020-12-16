@@ -79,7 +79,6 @@ export const logOut = async (props) => {
 
 export const currentUser = () => {
   const cu = auth.currentUser;
-  console.log(cu);
   return cu;
 };
 
@@ -101,7 +100,7 @@ const createUserInDB = async (user) => {
               userEmail: user.email,
               emailVerified: user.emailVerified,
               userName: user.displayName,
-              userDPURL: user.photoURL,
+              userDPURL: user.photoURL ? user.photoURL : "",
             })
           );
       }
